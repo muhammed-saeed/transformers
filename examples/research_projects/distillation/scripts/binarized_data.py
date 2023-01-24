@@ -80,7 +80,11 @@ def main():
     logger.info("Finished binarization")
     logger.info(f"{len(data)} examples processed.")
 
-    dp_file = f"{args.dump_file}.{args.tokenizer_name}.pickle"
+    dp_file = f"{args.dump_file}.pickle"
+    #step 1/8
+    #when trying to save the file it takes the data + the tokenizer name
+    #the issue with our tokenizer name asafyia/arabic
+    #to solve this move the tokenizer.name out
     vocab_size = tokenizer.vocab_size
     if vocab_size < (1 << 16):
         rslt_ = [np.uint16(d) for d in rslt]
